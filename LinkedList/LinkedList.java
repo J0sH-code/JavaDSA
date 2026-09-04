@@ -11,7 +11,7 @@ public class LinkedList<T> {
         this.size = size;
 
         for (int i = 0; i < this.size; i++) {
-            Node<T> node = new Node<>(null, null, null);
+            Node<T> node = new Node<>(null, null, lastNode);
             if (firstNode != null) {
                 lastNode.setNextNode(node);
                 lastNode = node;
@@ -22,28 +22,38 @@ public class LinkedList<T> {
         }
     }
 
+    public Node<T> getFirstNode() {
+        return firstNode;
+    }
+
+    public Node<T> getLastNode() {
+        return lastNode;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
     public void add(T element) {
+        Node<T> newNode = new Node<>(element, null, lastNode);
+
         if (firstNode == null) {
-            firstNode = new Node<>(element, null, null);
-            lastNode = firstNode;
-            size++;
+            firstNode = newNode;
+        } else {
+            lastNode.setNextNode(newNode);
         }
 
-        Node<T> currentNode = firstNode;
-        while (currentNode.getNextNode() != null) {
-            Node<T> prevNode = currentNode;
-            currentNode = currentNode.getNextNode();
-
-            if (currentNode == null) {
-                Node<T> node = new Node<>(element, null, prevNode);
-                currentNode = node;
-                lastNode = currentNode;
-                size++;
-            }
-        }
+        lastNode = newNode;
+        size++;
     }
 
     public void printAllElements(){
-        
+        int count = 1;
+        Node<T> currentNode = firstNode;
+        while (currentNode != null) {
+            System.out.printf("%d. %s%n", count, currentNode.getData());
+            count++;
+            currentNode = currentNode.getNextNode();
+        }
     }
 }
