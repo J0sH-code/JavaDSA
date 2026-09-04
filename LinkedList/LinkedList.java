@@ -47,6 +47,18 @@ public class LinkedList<T> {
         size++;
     }
 
+    public LinkedList<T> reversed(){
+        LinkedList<T> reversedList = new LinkedList<>();
+
+        Node<T> currentNode = lastNode;
+        while (currentNode != null) {   
+            reversedList.add(currentNode.getData());
+            currentNode = currentNode.getPreviousNode();
+        }
+        
+        return reversedList;
+    }
+
     public void printAllElements(){
         int count = 1;
         Node<T> currentNode = firstNode;
