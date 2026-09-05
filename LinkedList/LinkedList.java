@@ -38,18 +38,20 @@ public class LinkedList<T> {
         Node<T> currentNode = firstNode;
         Node<T> nextNode = currentNode.getNextNode();
 
-        if (index == (size-1)) {
+        if (index == size) {
             Node<T> newNode = new Node<>(element, null, lastNode);
             lastNode.setNextNode(newNode);
             lastNode = newNode;
         } else {
-            for (int i = 0; i < (index + 1); i++) {
+            for (int i = 0; i < (index - 1); i++) {
                 currentNode = currentNode.getNextNode();
+                nextNode = currentNode.getNextNode();
             }
             Node<T> newNode = new Node<>(element, nextNode, currentNode);
 
+            currentNode.setNextNode(newNode);
+
             nextNode.setPreviousNode(newNode);
-            currentNode = newNode;
         }
     }
 
