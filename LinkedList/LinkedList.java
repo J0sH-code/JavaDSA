@@ -34,6 +34,25 @@ public class LinkedList<T> {
         return size;
     }
 
+    public void addIndex(int index, T element) {
+        Node<T> currentNode = firstNode;
+        Node<T> nextNode = currentNode.getNextNode();
+
+        if (index == (size-1)) {
+            Node<T> newNode = new Node<>(element, null, lastNode);
+            lastNode.setNextNode(newNode);
+            lastNode = newNode;
+        } else {
+            for (int i = 0; i < (index + 1); i++) {
+                currentNode = currentNode.getNextNode();
+            }
+            Node<T> newNode = new Node<>(element, nextNode, currentNode);
+
+            nextNode.setPreviousNode(newNode);
+            currentNode = newNode;
+        }
+    }
+
     public void add(T element) {
         Node<T> newNode = new Node<>(element, null, lastNode);
 
@@ -67,5 +86,10 @@ public class LinkedList<T> {
             count++;
             currentNode = currentNode.getNextNode();
         }
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }
