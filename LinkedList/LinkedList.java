@@ -34,7 +34,7 @@ public class LinkedList<T> {
         return size;
     }
 
-    public void addIndex(int index, T element) {
+    public void insertAt(int index, T element) {
         Node<T> currentNode = firstNode;
         Node<T> nextNode = currentNode.getNextNode();
 
@@ -53,6 +53,14 @@ public class LinkedList<T> {
 
             nextNode.setPreviousNode(newNode);
         }
+    }
+
+    public void replace(int index, T element){
+        
+    }
+
+    public void delete(int index){
+
     }
 
     public void add(T element) {
