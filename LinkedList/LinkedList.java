@@ -59,9 +59,14 @@ public class LinkedList<T> {
         
     }
 
-    public void delete(int index){
+    public void delete(int index){ 
         Node<T> currentNode = firstNode;
         Node<T> nextNode = currentNode.getNextNode();
+
+        if (index == size) {
+            
+        }
+
     }
 
     public void add(T element) {
