@@ -64,9 +64,11 @@ public class LinkedList<T> {
         Node<T> nextNode = currentNode.getNextNode();
 
         if (index == size) {
-            
+            Node<T> secondToLastNode = lastNode.getPreviousNode();
+            secondToLastNode.setNextNode(null);
+            lastNode = secondToLastNode;
+            this.size--;
         }
-
     }
 
     public void add(T element) {
