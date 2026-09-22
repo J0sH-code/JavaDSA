@@ -35,18 +35,17 @@ public class LinkedList<T> {
     }
 
     public void insertAt(int index, T element) {
-        Node<T> currentNode = firstNode;
-        Node<T> nextNode = currentNode.getNextNode();
+        Node<T> currentNode;
+        Node<T> nextNode;
 
         if (index == size) {
             Node<T> newNode = new Node<>(element, null, lastNode);
             lastNode.setNextNode(newNode);
             lastNode = newNode;
         } else {
-            for (int i = 0; i < (index - 1); i++) {
-                currentNode = currentNode.getNextNode();
-                nextNode = currentNode.getNextNode();
-            }
+            currentNode = traverseTo(index);
+            nextNode = currentNode.getNextNode();
+
             Node<T> newNode = new Node<>(element, nextNode, currentNode);
 
             currentNode.setNextNode(newNode);
@@ -60,8 +59,8 @@ public class LinkedList<T> {
     }
 
     public void delete(int index){ 
-        Node<T> currentNode = firstNode;
-        Node<T> nextNode = currentNode.getNextNode();
+        Node<T> currentNode;
+        Node<T> nextNode;
 
         if (index == (size - 1)) {
             Node<T> secondToLastNode = lastNode.getPreviousNode();
@@ -69,10 +68,9 @@ public class LinkedList<T> {
             lastNode = secondToLastNode;
             this.size--;
         } else {
-            for (int i = 0; i < (index - 1); i++) {
-                currentNode = currentNode.getNextNode();
-                nextNode = currentNode.getNextNode();
-            } 
+            currentNode = traverseTo(index);
+            nextNode = currentNode.getNextNode();
+
             Node<T> prevNode = currentNode.getPreviousNode();
 
             nextNode.setPreviousNode(prevNode);
@@ -81,6 +79,16 @@ public class LinkedList<T> {
 
             this.size--;
         }
+    }
+
+    private Node<T> traverseTo(int index){
+        Node<T> currentNode = firstNode;
+
+        for (int i = 0; i < (index - 1); i++) {
+            currentNode = currentNode.getNextNode();
+        }
+
+        return currentNode;
     }
 
     public void add(T element) {
