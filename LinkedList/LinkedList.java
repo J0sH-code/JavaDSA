@@ -63,10 +63,22 @@ public class LinkedList<T> {
         Node<T> currentNode = firstNode;
         Node<T> nextNode = currentNode.getNextNode();
 
-        if (index == size) {
+        if (index == (size - 1)) {
             Node<T> secondToLastNode = lastNode.getPreviousNode();
             secondToLastNode.setNextNode(null);
             lastNode = secondToLastNode;
+            this.size--;
+        } else {
+            for (int i = 0; i < (index - 1); i++) {
+                currentNode = currentNode.getNextNode();
+                nextNode = currentNode.getNextNode();
+            } 
+            Node<T> prevNode = currentNode.getPreviousNode();
+
+            nextNode.setPreviousNode(prevNode);
+
+            prevNode.setNextNode(nextNode);
+
             this.size--;
         }
     }
