@@ -45,7 +45,7 @@ public class LinkedList<T> {
 
             size++;
         } else if (index == 0) {
-            Node<T> newNode = new Node(element, nextNode, null);
+            Node<T> newNode = new Node<>(element, firstNode, null);
             firstNode.setPreviousNode(newNode);
             firstNode = newNode;
 
