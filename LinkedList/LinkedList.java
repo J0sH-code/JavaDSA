@@ -42,6 +42,14 @@ public class LinkedList<T> {
             Node<T> newNode = new Node<>(element, null, lastNode);
             lastNode.setNextNode(newNode);
             lastNode = newNode;
+
+            size++;
+        } else if (index == 0) {
+            Node<T> newNode = new Node(element, nextNode, null);
+            firstNode.setPreviousNode(newNode);
+            firstNode = newNode;
+
+            size++;
         } else {
             currentNode = traverseTo(index);
             nextNode = currentNode.getNextNode();
@@ -51,6 +59,8 @@ public class LinkedList<T> {
             currentNode.setNextNode(newNode);
 
             nextNode.setPreviousNode(newNode);
+
+            size++;
         }
     }
 
