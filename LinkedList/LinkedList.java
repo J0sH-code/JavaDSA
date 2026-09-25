@@ -76,7 +76,14 @@ public class LinkedList<T> {
             Node<T> secondToLastNode = lastNode.getPreviousNode();
             secondToLastNode.setNextNode(null);
             lastNode = secondToLastNode;
-            this.size--;
+            size--;
+        } else if (index == 0) {
+            Node<T> secondNode = firstNode.getNextNode();
+            secondNode.setPreviousNode(null);
+
+            firstNode = secondNode;
+
+            size--;
         } else {
             currentNode = traverseTo(index);
             nextNode = currentNode.getNextNode();
@@ -87,7 +94,7 @@ public class LinkedList<T> {
 
             prevNode.setNextNode(nextNode);
 
-            this.size--;
+            size--;
         }
     }
 
