@@ -65,7 +65,17 @@ public class LinkedList<T> {
     }
 
     public void replace(int index, T element){
-        
+        Node<T> currentNode;
+
+        if (index == (size - 1)) {
+            lastNode.setData(element);
+        } else if (index == 0) {
+            firstNode.setData(element);
+        } else {
+            currentNode = traverseTo(index);
+
+            currentNode.setData(element);
+        }
     }
 
     public void delete(int index){ 
